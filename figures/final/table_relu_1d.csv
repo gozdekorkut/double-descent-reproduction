@@ -1,0 +1,5 @@
+Quantity,"Paper (≈, from figure)",Ours (mean ± std)
+"Norm, N = 40 (feature seed 0, shown in figure)",≈ 695,236.7
+"Norm, N = 4000 (feature seed 0, shown in figure)",≈ 159,162.5
+"Median norm over 20 seeds, N = 40",—,216.6
+"Median norm over 20 seeds, N = 4000",—,162.4

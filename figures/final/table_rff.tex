@@ -1,0 +1,19 @@
+\begin{table}[h]
+  \centering
+  \caption{Random Fourier features on MNIST, $n = 10^4$ (paper Fig.~2). Paper values read from the figure.}
+  \begin{tabular}{lcc}
+    \toprule
+    Quantity & Paper & Ours \\
+    \midrule
+    Test error, smallest N (ours N = 200) & $\approx$ 15 \% & 15.95 $\pm$ 0.22 \% \\
+    Train error, smallest N & $\approx$ 14 \% & 15.62 $\pm$ 0.18 \% \\
+    Best test error with N $<$ n (ours N = 4000) & $\approx$ 4.5 \% & 5.09 $\pm$ 0.21 \% \\
+    Test error at N = n = 10000 & 88 \% & 83.62 $\pm$ 1.09 \% \\
+    Test squared loss at N = n & 1709 & 209.6 $\pm$ 65.4 \\
+    Norm at N = n & 447 & 2922 $\pm$ 490 \\
+    Test error, largest N (ours N = 60000) & $\approx$ 2.5 \% & 2.76 $\pm$ 0.07 \% \\
+    Test error, kernel limit (N $\to$ $\infty$) & $\approx$ 2.2 \% & 2.52 $\pm$ 0.03 \% \\
+    Norm, kernel limit & 62 & 61.2 $\pm$ 0.5 \\
+    \bottomrule
+  \end{tabular}
+\end{table}

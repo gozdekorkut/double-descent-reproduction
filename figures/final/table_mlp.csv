@@ -1,0 +1,8 @@
+Quantity,"Paper (≈, from figure)",Ours (mean ± std)
+"Test error, smallest P (ours P = 3985)",≈ 56 %,48.17 ± 3.98 %
+Best test error with P < nK (ours P = 15910),≈ 13 %,18.11 ± 1.11 %
+Highest test error near P = nK (ours P = 39760),≈ 21 % (at P = nK),23.89 ± 0.80 %
+Train error there,≈ 1 %,0.83 ± 0.28 %
+Test squared loss there,≈ 0.55,0.765 ± 0.057
+"Test error, largest P (ours P = 799780)",≈ 4.5 % (P ≈ 800k),4.88 ± 0.06 %
+"Test squared loss, largest P",≈ 0.19,0.206 ± 0.001

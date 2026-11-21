@@ -1,0 +1,8 @@
+Quantity,"Paper (≈, from figure)",Ours (mean ± std)
+"Best single tree, test squared loss ÷ 10 (ours 500 leaves)",≈ 0.036,0.0366 ± 0.0008
+"Single tree at max leaves (2000/1), test squared loss ÷ 10",≈ 0.046,0.0463 ± 0.0014
+"2000/20 trees, test squared loss ÷ 10",≈ 0.015,0.0145 ± 0.0001
+"Best single tree, test error",≈ 22.5 %,22.72 ± 0.76 %
+"Single tree at max leaves (2000/1), test error",≈ 23 %,23.16 ± 0.72 %
+"2000/20 trees, test error",≈ 6 %,5.58 ± 0.04 %
+Single tree at max leaves: train squared loss,0,0.0e+00

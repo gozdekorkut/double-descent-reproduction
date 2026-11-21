@@ -1,0 +1,17 @@
+\begin{table}[h]
+  \centering
+  \caption{Two-layer MLP on MNIST, $n = 4000$, weight reuse (paper Fig.~4). Paper values read from the figure.}
+  \begin{tabular}{lcc}
+    \toprule
+    Quantity & Paper & Ours \\
+    \midrule
+    Test error, smallest P (ours P = 3985) & $\approx$ 56 \% & 48.17 $\pm$ 3.98 \% \\
+    Best test error with P $<$ nK (ours P = 15910) & $\approx$ 13 \% & 18.11 $\pm$ 1.11 \% \\
+    Highest test error near P = nK (ours P = 39760) & $\approx$ 21 \% (at P = nK) & 23.89 $\pm$ 0.80 \% \\
+    Train error there & $\approx$ 1 \% & 0.83 $\pm$ 0.28 \% \\
+    Test squared loss there & $\approx$ 0.55 & 0.765 $\pm$ 0.057 \\
+    Test error, largest P (ours P = 799780) & $\approx$ 4.5 \% (P $\approx$ 800k) & 4.88 $\pm$ 0.06 \% \\
+    Test squared loss, largest P & $\approx$ 0.19 & 0.206 $\pm$ 0.001 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
