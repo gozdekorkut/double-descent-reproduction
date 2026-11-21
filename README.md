@@ -1,6 +1,6 @@
 # Reproducing "Reconciling Modern Machine-Learning Practice and the Classical Bias–Variance Trade-off"
 
-CMP4509 Introduction to Deep Learning, term project.
+CMP4509 Introduction to Deep Learning (Bahçeşehir University, Fall 2026), term project (paper #8).
 
 We reproduce the **double descent** risk curve of Belkin, Hsu, Ma & Mandal (2019), [PNAS 116(32)](https://doi.org/10.1073/pnas.1903070116) / [arXiv:1812.11118](https://arxiv.org/abs/1812.11118), on MNIST with four model families, using free Google Colab resources and PyTorch.
 
@@ -33,7 +33,8 @@ Full paper-vs-ours tables are in `figures/final/table_*.csv` (and `.tex` for the
 ```
 notebooks/
   01_rff_mnist.ipynb        Random Fourier features, min-norm least squares (paper Fig. 2)
-  02_mlp_mnist.ipynb        Two-layer MLP trained with SGD (paper Fig. 4 / 9)
+  02_mlp_mnist_reuse.ipynb    Two-layer MLP trained with SGD, weight reuse (paper Fig. 4)
+  02_mlp_mnist_noreuse.ipynb  Same code, WEIGHT_REUSE = False (paper Fig. 9c)
   03_relu_1d.ipynb          1-D random ReLU features, smoothness of interpolants (paper Fig. 3)
   04_random_forest.ipynb    Random forests without bootstrap (paper Fig. 5)
   05_make_figures.ipynb     Final figures and paper-vs-ours tables from the result CSVs
@@ -57,7 +58,7 @@ All notebooks run top to bottom on the **free tier of Google Colab** (or Kaggle)
 | Notebook | Runtime | Full-run time (approx.) |
 |---|---|---|
 | 01 RFF | T4 GPU | 30 min (3 seeds, 18 values of N) |
-| 02 MLP | T4 GPU | 3 h per setting (3 seeds, 14 widths, 6,000 epochs) |
+| 02 MLP (each of the two notebooks) | T4 GPU | ~3 h (3 seeds, 14 widths, 6,000 epochs) |
 | 03 1-D ReLU | CPU | 10 s |
 | 04 Random forest | CPU | a few minutes |
 | 05 Figures | CPU | < 1 min |
@@ -68,7 +69,7 @@ To run several notebooks in parallel, use separate Colab sessions (separate note
 
 **01: Random Fourier features.** n = 10,000 MNIST training images (pixels scaled to [0, 1], one-hot labels), test on the full 10,000-image test set. Features φ(x) = √(2/N) cos(vᵀx + b) with v ~ N(0, σ⁻²I), σ = 5, b ~ U[0, 2π]. Output weights are the minimum-norm least-squares solution A = Φ⁺Y, computed in float64 through the eigendecomposition of the smaller Gram matrix (ΦᵀΦ for N < n, ΦΦᵀ for N ≥ n), without any regularisation. N ranges from 200 to 60,000, densely sampled around N = n. Also computes the Gaussian kernel limit h_{n,∞}.
 
-**02: Two-layer neural networks.** n = 4,000. Networks 784 → H (ReLU) → 10 with P = 785H + 10(H + 1) parameters; the interpolation threshold is expected at P ≈ nK = 40,000 (H ≈ 50). Squared loss on one-hot targets, SGD with momentum 0.95, up to 6,000 epochs (paper Appendix C.3). Below the threshold: weight reuse (each network starts from the trained smaller one; new weights ~ N(0, 0.01)), step size decayed by 10 % every 500 epochs, training stopped at zero training classification error. Above the threshold: Glorot initialisation, fixed step size, 6,000 epochs. `WEIGHT_REUSE = False` reproduces the setting of paper Fig. 9c. Logs the number of dead ReLU units per network.
+**02: Two-layer neural networks** (`02_mlp_mnist_reuse.ipynb` and `02_mlp_mnist_noreuse.ipynb`: the same code, run once with `WEIGHT_REUSE = True` and once with `False`; each file keeps the outputs of its own run). n = 4,000. Networks 784 → H (ReLU) → 10 with P = 785H + 10(H + 1) parameters; the interpolation threshold is expected at P ≈ nK = 40,000 (H ≈ 50). Squared loss on one-hot targets, SGD with momentum 0.95, up to 6,000 epochs (paper Appendix C.3). Below the threshold: weight reuse (each network starts from the trained smaller one; new weights ~ N(0, 0.01)), step size decayed by 10 % every 500 epochs, training stopped at zero training classification error. Above the threshold: Glorot initialisation, fixed step size, 6,000 epochs. `WEIGHT_REUSE = False` reproduces the setting of paper Fig. 9c. Logs the number of dead ReLU units per network.
 
 **03: 1-D random ReLU features.** 10 points, features max(v₁x + v₂, 0)/√N with (v₁, v₂) uniform on the unit circle, minimum-norm fit for N = 40 and N = 4,000, plus the median norm over 20 feature draws.
 
